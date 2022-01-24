@@ -1,9 +1,7 @@
 package spring.controller;
 
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -101,6 +99,20 @@ public class RegisterController {
 //		
 //		return "register/step3";
 //	}
+	
+   //여러 데이터를 한꺼번에 전달 받는 방식 => 커맨드 객체 => 매개값으로 전달 => 응답페이지에 값을 전달
+   @RequestMapping(value="/step3", method=RequestMethod.POST)
+      public String handlerStep3(@ModelAttribute("formData")RegisterRequest regReq) {
+         
+         try {
+            memberRegisterService.regist(regReq);
+            return "register/step3";
+         }
+         catch(AlreadyExistingMemberException e) {
+            return "register/step2";
+         }
+   }
+
 
 }
 
