@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd"
+	profile="real,dev">
+
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+<!-- 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	destroy-method="close">
+		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@db.interstander.com:41521:xe"/>
+		<property name="user" value="green99"/>
+		<property name="password" value="1234"/>
+	</bean> -->
+
+	<bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="memberDao" class="spring.dao.MemberDao">
+		<constructor-arg ref="dataSource"/>
+	</bean>
+	
+	<bean id="changePwdSvc" class="spring.service.ChangePasswordService">
+		<constructor-arg ref="memberDao"/>
+	</bean>
+	
+	<bean id="memberRegSvc" class="spring.service.MemberRegisterService">
+		<constructor-arg ref="memberDao"/>
+	</bean>
+	
+	<bean id="registerController" class="spring.controller.RegisterController" >
+		<property name="memberRegisterService" ref="memberRegSvc" />
+	</bean>
+	
+	<bean class="spring.controller.SurveyController" />
+
+<!-- 	<bean class="spring.controller.MainController" /> -->
+
+	<bean id="authSvc" class="spring.service.AuthService">
+		<property name="dao" ref="memberDao"/>
+	</bean>
+
+	<bean id="loginController" class="spring.controller.LoginController">
+		<property name="authservice" ref="authSvc"/>
+	</bean>
+	
+	<bean  class="spring.controller.LogoutController" />
+	
+	<bean id="changePwdController" class="spring.controller.ChangePwdController">
+		<property name="changePasswordService" ref="changePwdSvc"/>
+	</bean>
+	
+	<bean id="memberListController" class="spring.controller.MemberListController">
+		<property name="dao" ref="memberDao"/>
+	</bean>
+	
+	<bean id="memberDetailController" class="spring.controller.MemberDetailController">
+		<property name="dao" ref="memberDao"/>
+	</bean>
+
+	<bean class="spring.common.CommonExceptionHandler"/>
+</beans>
