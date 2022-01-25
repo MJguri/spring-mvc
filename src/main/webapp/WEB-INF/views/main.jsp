@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>메인</title>
+<link href="./resources/css/test.css" rel="stylesheet">
 </head>
 <body>
+<h2>안녕하세요</h2>
 	<c:if test="${empty authInfo}"><!-- 로그인 안되어있음 -->
 		<p>환영합니다.</p>
 		<p>

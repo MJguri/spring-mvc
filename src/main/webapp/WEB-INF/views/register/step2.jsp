@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="./../resources/css/test.css" rel="stylesheet">
 <title><spring:message code="member.register" /></title>
 </head>
 <body>
@@ -38,7 +39,7 @@
 <form:form action="step3" commandName="formData">
 	<p>
 		<label><spring:message code="email" /> : <br>
-			<form:input path="email"/>
+			<form:input path="email"/> 
 			<%-- <input type="text" name="email" id="email" value="${formData.email}"> --%>
 			<form:errors path="email"/>  <!--에러가 없다면 출력이 안됨 / 에러코드가 있다면 에러코드에 해당하는 라벨을 출력-->
 		</label>
@@ -61,8 +62,15 @@
 			<form:errors path="confirmPassword"/>
 		</label>
 	</p>
+	<p>
+		<label><spring:message code="password.confirm" /> : <br>
+			<input type="text" id="test" value="test">
+			
+		</label>
+	</p>
 	<input type="submit" value="<spring:message code="register.btn" />">
 </form:form>
+<div id="test2">안녕하세요</div>	
 </body>
 </html>
 
