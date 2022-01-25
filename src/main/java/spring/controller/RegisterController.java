@@ -2,6 +2,7 @@ package spring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.exception.AlreadyExistingMemberException;
 import spring.service.MemberRegisterService;
+import spring.validator.RegisterRequestValidator;
 import spring.vo.RegisterRequest;
 
 @Controller
@@ -102,18 +104,26 @@ public class RegisterController {
 	
    //여러 데이터를 한꺼번에 전달 받는 방식 => 커맨드 객체 => 매개값으로 전달 => 응답페이지에 값을 전달
    @RequestMapping(value="/step3", method=RequestMethod.POST)
-      public String handlerStep3(@ModelAttribute("formData")RegisterRequest regReq) {
+   public String handlerStep3(@ModelAttribute("formData")RegisterRequest regReq, Errors errors) {
+	  
+	   	new RegisterRequestValidator().validate(regReq, errors);
+	   	
+	   	if(errors.hasErrors()) { //에러가 하나라도 발견이 되었다면 
+	   		return "register/step2";
+	   	}
          
-         try {
-            memberRegisterService.regist(regReq);
-            return "register/step3";
-         }
-         catch(AlreadyExistingMemberException e) {
-            return "register/step2";
-         }
+		try {
+		   memberRegisterService.regist(regReq);
+		   return "register/step3";
+		}
+		catch(AlreadyExistingMemberException e) {
+			// 이미 회원이 존재하는 상태 => 에러
+			errors.rejectValue("email", "duplicate");
+		   return "register/step2";
+		}
+
+
    }
-
-
 }
 
 

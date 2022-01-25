@@ -10,7 +10,7 @@
 </head>
 <body>
 <form:form commandName="loginCommand">
-<form:errors />
+<form:errors /> <!--  글로벌 에러코드가 작성되는 부분  -->
 	<p>
 		<label><spring:message code="email"/>:<br>
 			<form:input path="email"/>
@@ -23,11 +23,11 @@
 			<form:errors path="password"/>
 		</label>		
 	</p>
-	<p>
+<%-- 	<p>
 		<label><spring:message code="rememberEmail"/>:<br>
 			<form:checkbox path="rememberEmail"/>
 		</label>
-	</p>
+	</p> --%>
 	<input type="submit" value="<spring:message code="login.btn"/>">
 </form:form>
 </body>

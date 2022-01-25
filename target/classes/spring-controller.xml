@@ -38,6 +38,20 @@
 	</bean>
 	
 	<bean class="spring.controller.SurveyController" />
+	
+	<bean id="authService" class="spring.service.AuthService">
+		<property name="dao" ref="memberDao"></property>
+	</bean>
+	
+	<bean id="loginController" class="spring.controller.LoginController">
+		<property name="authService" ref="authService"></property>
+	</bean>
+	
+	<bean id="logoutController" class="spring.controller.LogoutController"/>
+	
+	<bean id="changePwdController" class="spring.controller.ChangePwdController">
+		<constructor-arg ref="changePwdSvc"/>
+	</bean>
 
 <!-- 	<bean class="spring.controller.MainController" /> -->
 </beans>

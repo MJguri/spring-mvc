@@ -22,6 +22,7 @@
 		<form:errors path="newPassword"/>
 	</label>
 </p>
+<p><form:errors/></p>
 <input type="submit" value="<spring:message code="change.btn"/>" >
 </form:form>
 </body>

@@ -40,7 +40,7 @@
 		<label><spring:message code="email" /> : <br>
 			<form:input path="email"/>
 			<%-- <input type="text" name="email" id="email" value="${formData.email}"> --%>
-			<form:errors path="email"/>  <!-- required -->
+			<form:errors path="email"/>  <!--에러가 없다면 출력이 안됨 / 에러코드가 있다면 에러코드에 해당하는 라벨을 출력-->
 		</label>
 	</p>
 	<p>
