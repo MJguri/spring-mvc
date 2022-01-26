@@ -14,3 +14,8 @@ Spring MVC를 이용한 게시판 만들기 연습
    * 로그인 기능 추가 
    * 로그인 유지를 위한 HttpSession 사용
    * 비밀번호 변경 기능 추가
+* 2022_01_26
+   * @PathVariable을 이용한 경로 변수 처리
+   * 컨트롤러 예외 처리(@ControllerAdvice, @ExceptionHandler)
+   * 인터셉터
+   * 컨트롤러에서 쿠키 사용하기
