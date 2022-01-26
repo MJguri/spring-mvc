@@ -27,6 +27,17 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- HTML 문서처리 -->
+<!-- 	<servlet>
+		<servlet-name>htmlServlet</servlet-name>
+		<servlet-class>org.apache.jasper.servlet.JspServl</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>htmlServlet</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping> -->
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>

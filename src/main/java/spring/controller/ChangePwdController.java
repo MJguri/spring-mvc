@@ -37,7 +37,14 @@ public class ChangePwdController {
 //	}
 	//3. Post하고 같은 커맨드 객체를 사용하는 경우 model 생략 가능
 	@RequestMapping(method = RequestMethod.GET)
-	public String form(ChangePwdCommand changePwdCommand) {
+	public String form(ChangePwdCommand changePwdCommand, HttpSession session) {
+		
+//		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+//		
+//		if(authInfo==null) {
+//			return "redirect:/login"; //로그인 한 상태가 아니라면 로그인 페이지로 이동
+//		}
+		
 		return "edit/changePwdForm";
 	}
 	

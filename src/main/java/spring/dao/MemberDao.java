@@ -116,6 +116,29 @@ public class MemberDao {// 데이터베이스 연결과 쿼리전송
 		return result.isEmpty()?null:result.get(0);
 	}
 	
+	// 날짜로 데이터 검색하기 
+	public List<Member> selectByRegdate(Date from, Date to){
+		List<Member> list = jdbcTemplate.query(
+								"SELECT * FROM MEMBERS WHERE REGDATE BETWEEN ? AND ? ORDER BY REGDATE ASC", 
+								new RowMapper<Member>() {
+
+					@Override
+					public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Member member = new Member(
+								rs.getString("email"),
+								rs.getString("password"),
+								rs.getString("name"),
+								rs.getTimestamp("regdate"));
+						member.setId(rs.getLong("id"));
+						
+						return member;
+					}
+					
+				},from,to);
+		
+		return list;
+	}
+	
 	
 	
 	

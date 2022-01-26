@@ -52,6 +52,16 @@
 	<bean id="changePwdController" class="spring.controller.ChangePwdController">
 		<constructor-arg ref="changePwdSvc"/>
 	</bean>
+	
+	<bean id="listController" class="spring.controller.ListController">
+		<property name="dao" ref="memberDao"></property>
+	</bean>
+	
+	<bean id="memberDetailController" class="spring.controller.MemberDetailController" >
+      <property name="dao" ref="memberDao"></property>
+   </bean>
+   
+   <bean class="spring.common.CommonExceptionHandler" />
 
 <!-- 	<bean class="spring.controller.MainController" /> -->
 </beans>
