@@ -15,6 +15,7 @@ Spring MVC를 이용한 게시판 만들기 연습
    * 로그인 유지를 위한 HttpSession 사용
    * 비밀번호 변경 기능 추가
 * 2022_01_26
+   * @ModelAttribute 동작방식
    * @PathVariable을 이용한 경로 변수 처리
    * 컨트롤러 예외 처리(@ControllerAdvice, @ExceptionHandler)
    * 인터셉터
