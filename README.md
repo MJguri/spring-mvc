@@ -20,3 +20,6 @@ Spring MVC를 이용한 게시판 만들기 연습
    * 컨트롤러 예외 처리(@ControllerAdvice, @ExceptionHandler)
    * 인터셉터
    * 컨트롤러에서 쿠키 사용하기
+* 2022_01_27
+   * 스프링설정파일 xml -> java 파일로 변경
+   * profile과 properties
